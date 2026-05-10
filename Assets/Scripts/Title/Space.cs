@@ -20,5 +20,11 @@ public class Space : MonoBehaviour
         {
             image.sprite = sprite;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("終了");
+            Application.Quit();
+        }
     }
 }

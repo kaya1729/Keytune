@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //楽曲リストを格納するクラス/
-[Serializable] public class SongsList
+[Serializable]
+public class SongsList
 {
     public string id;
     public string name;
@@ -13,7 +14,8 @@ using UnityEngine.SceneManagement;
     public int[] difficult;
 }
 
-[Serializable] public class Data
+[Serializable]
+public class Data
 {
     public SongsList[] list;
 }
@@ -28,10 +30,10 @@ public class SceneManeger : MonoBehaviour
     public static float notesSpeed = 8;
     public static float notesTiming = 0;
 
-    public static int settingNum1=-1;
-    public static int settingNum2=0;
-    public static int settingNum3=1;
-    public static string[] settingName = {"Notes Speed","Notes Timing"};
+    public static int settingNum1 = -1;
+    public static int settingNum2 = 0;
+    public static int settingNum3 = 1;
+    public static string[] settingName = { "Notes Speed", "Notes Timing" };
 
     //jsonファイルを読み込むための変数/
     public string inputText;
@@ -49,8 +51,8 @@ public class SceneManeger : MonoBehaviour
     public static string playId;
 
     private bool isSetting = false;
-    private bool waitStart=false;
-          
+    private bool waitStart = false;
+
     void OnEnable()
     {
         Load();
@@ -146,6 +148,11 @@ public class SceneManeger : MonoBehaviour
             }
             if (isSetting == false)//設定画面を開いていない/
             {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    SceneManager.LoadScene("Title");
+                }
+
                 if (Input.GetKeyDown(KeyCode.D))
                 {
                     if (dif > 0)
@@ -217,10 +224,10 @@ public class SceneManeger : MonoBehaviour
                 setting.SetActive(isSetting);
             }
         }
-        
+
     }
 
-    int ArrayNum(int a,int length)
+    int ArrayNum(int a, int length)
     {
         if (a < 0)
         {
@@ -237,6 +244,6 @@ public class SceneManeger : MonoBehaviour
 
     private void MovePlay()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game");
     }
 }
